@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".login.view.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_image_logo"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="48dp"
+        android:src="@drawable/instagram_logo_black"
+        android:contentDescription="@null" />
+
+    <EditText
+        android:id="@+id/login_edit_email"
+        android:hint="@string/email"
+        style="@style/Theme.InstagramClone.FormEditText"
+        android:autofillHints="emailAddress"
+        android:inputType="textEmailAddress" />
+
+</LinearLayout>
