@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="70dp"
+            tools:context=".login.view.LoginActivity">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="48dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null"
+                android:src="@drawable/photo_icon" />
+
+            <TextView
+                android:text="@string/photo_register_title"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                style="@style/Theme.InstagramClone.TextViewBase.Form" />
+
+            <TextView
+                android:text="@string/photo_register_subtitle"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                style="@style/Theme.InstagramClone.TextViewBase.Form" />
+
+            <co.gabrielcastro.instagramclone.login.view.LoadingButton
+                android:id="@+id/register_button_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:text="@string/add_photo" />
+
+            <Button
+                android:id="@+id/register_button_jump"
+                android:text="@string/jump"
+                style="@style/Theme.InstagramClone.Link"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

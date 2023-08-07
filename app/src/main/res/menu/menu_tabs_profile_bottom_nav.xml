@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_profile_grid"
+        android:icon="@drawable/ic_insta_grid"
+        android:title="@null" />
+    <item
+        android:id="@+id/menu_profile_list"
+        android:icon="@drawable/ic_insta_listed"
+        android:title="@null" />
+    <item
+        android:id="@+id/menu_profile_user"
+        android:icon="@drawable/ic_insta_profile"
+        android:title="@null" />
+
+</menu>

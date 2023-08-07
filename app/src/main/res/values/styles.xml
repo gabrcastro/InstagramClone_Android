@@ -6,12 +6,67 @@
         <item name="android:layout_marginEnd">36dp</item>
     </style>
 
-    <style name="Theme.InstagramClone.FormEditText" parent="Theme.InstagramClone.FormContainer">
+    <style name="Theme.InstagramClone.FormEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
-        <item name="android:layout_marginBottom">24dp</item>
-        <item name="background">@drawable/edit_text_background</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:background">@drawable/edit_text_background</item>
     </style>
 
+    <style name="Theme.InstagramClone.FormEditTextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">36dp</item>
+        <item name="android:layout_marginEnd">36dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <style name="Theme.InstagramClone.Button" parent="Widget.Material3.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+
+        <item name="android:layout_marginStart">36dp</item>
+        <item name="android:layout_marginEnd">36dp</item>
+
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+
+        <item name="backgroundTint">@color/button_background</item>
+    </style>
+
+    <style name="Theme.InstagramClone.TextViewBase" parent="Theme.InstagramClone.FormContainer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Theme.InstagramClone.TextViewBase.Form">
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginBottom">24dp</item>
+    </style>
+
+    <style name="Theme.InstagramClone.Link" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blue_enabled</item>
+    </style>
+
+    <style name="Theme.InstagramClone.TextViewProfile">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+    
+    <style name="Theme.InstagramClone.Button.White" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
 </resources>

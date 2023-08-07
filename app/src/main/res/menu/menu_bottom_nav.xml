@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_bottom_home"
+        android:icon="@drawable/ic_insta_home"
+        android:title="@null" />
+    <item
+        android:id="@+id/menu_bottom_search"
+        android:icon="@drawable/ic_insta_search"
+        android:title="@null" />
+    <item
+        android:id="@+id/menu_bottom_add"
+        android:icon="@drawable/ic_insta_add"
+        android:title="@null" />
+    <item
+        android:id="@+id/menu_bottom_fav"
+        android:icon="@drawable/ic_insta_heart"
+        android:title="@null" />
+    <item
+        android:id="@+id/menu_bottom_profile"
+        android:icon="@drawable/ic_insta_profile"
+        android:title="@null" />
+
+
+</menu>
