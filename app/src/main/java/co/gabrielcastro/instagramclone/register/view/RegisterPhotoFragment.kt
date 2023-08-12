@@ -9,19 +9,20 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import co.gabrielcastro.instagramclone.R
 import co.gabrielcastro.instagramclone.common.view.CustomDialog
+import co.gabrielcastro.instagramclone.databinding.FragmentRegisterPhotoBinding
 
-class RegisterPhotoFragment : Fragment() {
+class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_register_photo, container, false)
+    private var binding: FragmentRegisterPhotoBinding? = null
+
+    override fun onDestroy() {
+        binding = null
+        super.onDestroy()
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentRegisterPhotoBinding.bind(view)
 
         // View esta pronta e posso manipular interface do app
         val customDialog = CustomDialog(requireContext())

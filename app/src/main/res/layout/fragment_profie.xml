@@ -129,6 +129,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="24dp"
             android:background="@color/white"
+            app:itemActiveIndicatorStyle="@color/gray_darker"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

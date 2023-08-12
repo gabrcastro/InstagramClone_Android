@@ -69,4 +69,10 @@
         <item name="android:layout_marginEnd">16dp</item>
         <item name="android:textAllCaps">false</item>
     </style>
+    
+    <style name="Theme.InstagramClone.Icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
 </resources>

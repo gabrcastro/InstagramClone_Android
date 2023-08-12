@@ -39,8 +39,8 @@
         <fragment
             android:id="@+id/main_fragment"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:name="co.gabrielcastro.instagramclone.profie.view.ProfieFragment"
-            tools:layout="@layout/fragment_profie"
+            android:name="co.gabrielcastro.instagramclone.camera.view.CameraFragment"
+            tools:layout="@layout/fragment_gallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -53,9 +53,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/menu_bottom_nav"
         app:itemIconTint="@color/black"
+        app:itemTextColor="@color/blue_enabled"
         android:background="@color/white"
+        app:itemActiveIndicatorStyle="@color/gray_darker"
         app:labelVisibilityMode="unlabeled"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="60dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
