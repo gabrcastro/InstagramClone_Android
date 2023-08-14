@@ -2,10 +2,6 @@ package co.gabrielcastro.instagramclone.login.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.text.Editable
-import android.text.TextWatcher
-import co.gabrielcastro.instagramclone.R
 import co.gabrielcastro.instagramclone.common.util.TxtWatcher
 import co.gabrielcastro.instagramclone.databinding.ActivityLoginBinding
 import co.gabrielcastro.instagramclone.login.Login
@@ -26,7 +22,13 @@ class LoginActivity : AppCompatActivity(), Login.View {
 
         with(binding) {
             loginEditEmail.addTextChangedListener(watcher)
+            loginEditEmail.addTextChangedListener( TxtWatcher {
+                displayEmailFailure(null)
+            } )
             loginEditPassword.addTextChangedListener(watcher)
+            loginEditPassword.addTextChangedListener(TxtWatcher {
+                displayPasswordFailure(null)
+            })
             loginButtonEnter.setOnClickListener {
                 presenter.login(loginEditEmail.text.toString(), loginEditPassword.text.toString())
 //                Handler(android.os.Looper.getMainLooper()).postDelayed({
@@ -36,9 +38,14 @@ class LoginActivity : AppCompatActivity(), Login.View {
         }
     }
 
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
     private val watcher = TxtWatcher {
-        binding.loginButtonEnter.isEnabled =
-            it.isNotEmpty()
+        binding.loginButtonEnter.isEnabled = binding.loginEditEmail.text.toString().isNotEmpty()
+                && binding.loginEditPassword.text.toString().isNotEmpty()
     }
 
     override fun showProgress(enabled: Boolean) {
