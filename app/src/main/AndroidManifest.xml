@@ -2,6 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- estou dizendo que meu app tem funcionalidade de camera - google play -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,23 +26,29 @@
         android:theme="@style/Theme.InstagramClone"
         tools:targetApi="31">
         <activity
-            android:name=".main.view.MainActivity"
+            android:name=".splash.view.SplashActivity"
             android:exported="true">
-        </activity>
-        <activity
-            android:name=".register.view.RegisterActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".login.view.LoginActivity"
-            android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.view.MainActivity" />
+        <activity android:name=".register.view.RegisterActivity" />
+        <activity
+            android:name=".login.view.LoginActivity"
+            android:exported="true" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="co.gabrielcastro.instagramclone.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

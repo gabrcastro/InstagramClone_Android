@@ -12,63 +12,54 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.gabrielcastro.instagramclone.R
+import co.gabrielcastro.instagramclone.common.base.BaseFragment
+import co.gabrielcastro.instagramclone.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, Home.Presenter>(
+	R.layout.fragment_home,
+	FragmentHomeBinding::bind
+) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
+	override lateinit var presenter: Home.Presenter
 
-    // disparado depois que a view esta criada
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+	override fun setupPresenter() {
+		// TODO : presenter = HomePresenter(this, repository)
+	}
 
-        val rv = view.findViewById<RecyclerView>(R.id.home_rv)
-        rv.layoutManager = LinearLayoutManager(requireContext())
-        rv.adapter = PostAdapter()
-    }
+	override fun setupViews(savedInstanceState: Bundle?) {
+		binding?.homeRv?.layoutManager = LinearLayoutManager(requireContext())
+		binding?.homeRv?.adapter = PostAdapter()
+	}
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+	override fun getMenu(): Int? {
+		return R.menu.menu_profile
+	}
 
-        setHasOptionsMenu(true) // vai informar que esse fragmento vai ser responsavel por gerar opcoes de menu
-    }
+	private class PostAdapter() : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_profile, menu)
+		override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+			// layout que vamos criar
+			return PostViewHolder(
+				LayoutInflater.from(parent.context).inflate(R.layout.item_post_list, parent, false)
+			)
+		}
 
-        super.onCreateOptionsMenu(menu, inflater)
-    }
+		override fun getItemCount(): Int {
+			// quantidade de items da celula
+			return 30
+		}
 
-    private class PostAdapter() : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
+		override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+			// devolver posicao
+			holder.bind(R.drawable.ic_insta_add)
+		}
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-            // layout que vamos criar
-            return PostViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_post_list, parent, false)
-            )
-        }
+		private class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+			fun bind(image: Int) {
+				itemView.findViewById<ImageView>(R.id.home_img_post).setImageResource(image)
+			}
+		}
 
-        override fun getItemCount(): Int {
-            // quantidade de items da celula
-            return 30
-        }
-
-        override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-            // devolver posicao
-            holder.bind(R.drawable.ic_insta_add)
-        }
-
-        private class PostViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-            fun bind(image: Int) {
-                itemView.findViewById<ImageView>(R.id.home_img_post).setImageResource(image)
-            }
-        }
-
-    }
+	}
 
 }

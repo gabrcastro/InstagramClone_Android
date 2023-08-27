@@ -38,7 +38,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <co.gabrielcastro.instagramclone.login.view.LoadingButton
+            <co.gabrielcastro.instagramclone.common.view.LoadingButton
                 android:id="@+id/register_button_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,12 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray_darker"
-        app:layout_constraintBottom_toTopOf="@id/register_textview_register"
+        app:layout_constraintBottom_toTopOf="@id/register_textview_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/register_textview_register"
+        android:id="@+id/register_textview_login"
         style="@style/Theme.InstagramClone.TextViewBase"
         android:layout_width="match_parent"
         android:layout_marginStart="0dp"
@@ -64,6 +64,7 @@
         android:background="@color/white"
         android:padding="24dp"
         android:text="@string/already_has_account"
+        android:textColor="@color/black"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

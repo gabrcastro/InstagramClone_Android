@@ -4,7 +4,7 @@
     <string name="password">Senha</string>
     <string name="enter">Entrar</string>
     <string name="or">ou</string>
-    <string name="does_not_have_account">Não tem uma conta? <b><font color="#000000">Cadastre-se.</font></b></string>
+    <string name="does_not_have_account">Não tem uma conta? <b>Cadastre-se.</b></string>
     <string name="already_has_account">Já tem uma conta? <b><font color="#000000">Faça login.</font></b></string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="action_settings">Settings</string>
@@ -43,4 +43,6 @@
     <string name="logout_action">Sair</string>
     <string name="cancel">Cancel</string>
     <string name="invalid_password">Senha deve ter ao menos 8 caracteres</string>
+    <string name="invalid_name">Nome deve ter ao menos 3 caracteres</string>
+    <string name="empty_list">Nenhum registro encontrado</string>
 </resources>

@@ -27,7 +27,7 @@
                 style="@style/Theme.InstagramClone.TextViewBase.Form"
                 android:text="@string/welcome_to_instagram"/>
 
-            <co.gabrielcastro.instagramclone.login.view.LoadingButton
+            <co.gabrielcastro.instagramclone.common.view.LoadingButton
                 android:id="@+id/register_welcome_button_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/cropper_btn_save"
+        style="@style/Theme.InstagramClone.Link"
+        android:text="@string/save"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/cropper_btn_cancel"
+        style="@style/Theme.InstagramClone.Link"
+        android:text="@string/cancel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    
+    <com.theartofdev.edmodo.cropper.CropImageView
+        android:id="@+id/cropper_container"
+        app:layout_constraintTop_toBottomOf="@id/cropper_btn_cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+<!--    <com.theartofdev.edmodo.cropper.CropImageView-->
+<!--        xmlns:custom="http://schemas.android.com/apk/res-auto"-->
+<!--        android:id="@+id/cropImageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

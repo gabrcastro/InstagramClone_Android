@@ -1,11 +1,18 @@
 package co.gabrielcastro.instagramclone.login.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import co.gabrielcastro.instagramclone.common.base.DependencyInjector
 import co.gabrielcastro.instagramclone.common.util.TxtWatcher
 import co.gabrielcastro.instagramclone.databinding.ActivityLoginBinding
 import co.gabrielcastro.instagramclone.login.Login
+import co.gabrielcastro.instagramclone.login.data.FakeDataSource
+import co.gabrielcastro.instagramclone.login.data.LoginRepository
 import co.gabrielcastro.instagramclone.login.presentation.LoginPresenter
+import co.gabrielcastro.instagramclone.main.view.MainActivity
+import co.gabrielcastro.instagramclone.register.view.RegisterActivity
 
 class LoginActivity : AppCompatActivity(), Login.View {
 
@@ -18,7 +25,7 @@ class LoginActivity : AppCompatActivity(), Login.View {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = LoginPresenter(this)
+        presenter = LoginPresenter(this, DependencyInjector.loginRepository())
 
         with(binding) {
             loginEditEmail.addTextChangedListener(watcher)
@@ -31,9 +38,9 @@ class LoginActivity : AppCompatActivity(), Login.View {
             })
             loginButtonEnter.setOnClickListener {
                 presenter.login(loginEditEmail.text.toString(), loginEditPassword.text.toString())
-//                Handler(android.os.Looper.getMainLooper()).postDelayed({
-//                    loginButtonEnter.showProgress(false)
-//                }, 2000)
+            }
+            loginTextviewRegister.setOnClickListener {
+                goToRegisterScreen()
             }
         }
     }
@@ -46,6 +53,10 @@ class LoginActivity : AppCompatActivity(), Login.View {
     private val watcher = TxtWatcher {
         binding.loginButtonEnter.isEnabled = binding.loginEditEmail.text.toString().isNotEmpty()
                 && binding.loginEditPassword.text.toString().isNotEmpty()
+    }
+
+    private fun goToRegisterScreen() {
+        startActivity(Intent(this, RegisterActivity::class.java))
     }
 
     override fun showProgress(enabled: Boolean) {
@@ -61,10 +72,14 @@ class LoginActivity : AppCompatActivity(), Login.View {
     }
 
     override fun onUserAuthenticated() {
-        // TODO: go to main screen
+        // go to main screen
+        val intent =  Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
-    override fun onUserUnauthorized() {
-        // TODO: show alert
+    override fun onUserUnauthorized(message: String) {
+        // show alert
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
