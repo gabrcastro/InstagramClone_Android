@@ -7,13 +7,9 @@ import co.gabrielcastro.instagramclone.common.model.UserAuth
 
 interface Profile {
 	interface Presenter: BasePresenter {
-		val state: UserAuth?
 		fun fetchUserProfile()
 		fun fetchUserPosts()
-	}
-
-	interface State {
-
+		fun clear()
 	}
 
 	interface View: BaseView<Presenter> {
