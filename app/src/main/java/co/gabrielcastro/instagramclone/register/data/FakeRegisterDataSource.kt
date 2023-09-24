@@ -4,7 +4,6 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import co.gabrielcastro.instagramclone.common.model.Database
-import co.gabrielcastro.instagramclone.common.model.Photo
 import co.gabrielcastro.instagramclone.common.model.UserAuth
 import java.util.UUID
 
@@ -36,10 +35,15 @@ class FakeRegisterDataSource : RegisterDataSource {
 				callback.onFailure("Usuario ja cadastrado")
 
 			} else {
-				val newUser =  UserAuth(UUID.randomUUID().toString(), name, email, password)
+				val newUser =  UserAuth(UUID.randomUUID().toString(), name, email, password, null)
 				val created = Database.usersAuth.add(newUser)
 				if (created) {
 					Database.sessionAuth = newUser
+
+					Database.followers[newUser.uuid] = hashSetOf()
+					Database.posts[newUser.uuid] = hashSetOf()
+					Database.feeds[newUser.uuid] = hashSetOf()
+
 					callback.onSuccess()
 				} else {
 					callback.onFailure(" Erro no servidor ")
@@ -58,17 +62,11 @@ class FakeRegisterDataSource : RegisterDataSource {
 			if (userAuth == null) {
 				callback.onFailure("Usuario nao cadastrado")
 			} else {
-				val newPhoto = Photo(userAuth.uuid, photoUri)
-
-				val created = Database.photos.add(newPhoto)
-
-				if (created) {
+				val index = Database.usersAuth.indexOf(Database.sessionAuth)
+				Database.usersAuth[index] = Database.sessionAuth!!.copy(photoUri = photoUri)
+				Database.sessionAuth = Database.usersAuth[index]
 					callback.onSuccess()
-				} else {
-					callback.onFailure(" Erro no servidor ")
-				}
 			}
-
 			callback.onComplete()
 		}, 2000)
 	}

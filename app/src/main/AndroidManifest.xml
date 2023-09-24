@@ -2,12 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- estou dizendo que meu app tem funcionalidade de camera - google play -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <queries>
         <intent>
@@ -26,6 +28,10 @@
         android:theme="@style/Theme.InstagramClone"
         tools:targetApi="31">
         <activity
+            android:label="@string/photo"
+            android:name=".add.view.AddActivity"
+            android:exported="true" />
+        <activity
             android:name=".splash.view.SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -34,7 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.view.MainActivity" />
+        <activity
+            android:name=".main.view.MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".register.view.RegisterActivity" />
         <activity
             android:name=".login.view.LoginActivity"

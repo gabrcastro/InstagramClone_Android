@@ -1,9 +1,11 @@
 package co.gabrielcastro.instagramclone.profile.view
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import co.gabrielcastro.instagramclone.R
 import co.gabrielcastro.instagramclone.common.base.BaseFragment
 import co.gabrielcastro.instagramclone.common.base.DependencyInjector
@@ -12,11 +14,12 @@ import co.gabrielcastro.instagramclone.common.model.UserAuth
 import co.gabrielcastro.instagramclone.databinding.FragmentProfileBinding
 import co.gabrielcastro.instagramclone.profile.Profile
 import co.gabrielcastro.instagramclone.profile.presenter.ProfilePresenter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
 	R.layout.fragment_profile,
 	FragmentProfileBinding::bind
-), Profile.View {
+), Profile.View, BottomNavigationView.OnNavigationItemSelectedListener {
 
 	override lateinit var presenter: Profile.Presenter
 	private val adapter = PostAdapter()
@@ -28,7 +31,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
 	override fun setupViews(savedInstanceState: Bundle?) {
 		binding?.profileRv?.layoutManager = GridLayoutManager(requireContext(), 3)
 		binding?.profileRv?.adapter = adapter
-
+		binding?.profileNavTabs?.setOnNavigationItemSelectedListener(this)
 		if (savedInstanceState == null ) {
 			presenter.fetchUserProfile()
 		}
@@ -36,22 +39,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
 
 	override fun getMenu(): Int {
 		return R.menu.menu_profile
-	}
-
-	override fun onViewStateRestored(savedInstanceState: Bundle?) {
-		if (savedInstanceState != null) {
-			val state = savedInstanceState.getParcelable<UserAuth>("profileState")
-			state?.let {
-				displayUserProfile(it)
-			}
-		}
-
-		super.onViewStateRestored(savedInstanceState)
-	}
-
-	override fun onSaveInstanceState(outState: Bundle) {
-		outState.putParcelable("profileState", presenter.state)
-		super.onSaveInstanceState(outState)
 	}
 
 	override fun showProgress(enabled: Boolean) {
@@ -64,7 +51,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
 		binding?.profileTxtFollowersCount?.text = userAuth.followersCount.toString()
 		binding?.profileTxtUsername?.text = userAuth.name
 		binding?.profileTxtBio?.text = "TODO"
-
+		binding?.profileImgIcon?.setImageURI(userAuth.photoUri)
 		presenter.fetchUserPosts()
 	}
 
@@ -83,5 +70,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, Profile.Presenter>(
 
 		adapter.items = posts
 		adapter.notifyDataSetChanged()
+	}
+
+	override fun onNavigationItemSelected(item: MenuItem): Boolean {
+		when(item.itemId) {
+			R.id.menu_profile_grid -> {
+				binding?.profileRv?.layoutManager = GridLayoutManager(requireContext(), 3)
+			}
+			R.id.menu_profile_list -> {
+				binding?.profileRv?.layoutManager = LinearLayoutManager(requireContext())
+			}
+		}
+
+		return true
 	}
 }

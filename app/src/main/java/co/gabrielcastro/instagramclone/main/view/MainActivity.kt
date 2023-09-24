@@ -10,7 +10,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import co.gabrielcastro.instagramclone.R
-import co.gabrielcastro.instagramclone.camera.view.CameraFragment
+import co.gabrielcastro.instagramclone.post.view.AddFragment
 import co.gabrielcastro.instagramclone.common.extension.replaceFragment
 import co.gabrielcastro.instagramclone.databinding.ActivityMainBinding
 import co.gabrielcastro.instagramclone.home.view.HomeFragment
@@ -19,16 +19,14 @@ import co.gabrielcastro.instagramclone.search.view.SearchFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener, AddFragment.AddListener {
 
 	private lateinit var binding: ActivityMainBinding
-	private lateinit var homeFragment: Fragment
+	private lateinit var homeFragment: HomeFragment
 	private lateinit var searchFragment: Fragment
-	private lateinit var cameraFragment: Fragment
-	private lateinit var profileFragment: Fragment
+	private lateinit var addFragment: Fragment
+	private lateinit var profileFragment: ProfileFragment
 	private var currentFragment: Fragment? = null
-
-	private lateinit var fragmentSavedState: HashMap<String, Fragment.SavedState?>
 
 	@RequiresApi(Build.VERSION_CODES.R)
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,26 +48,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 		supportActionBar?.title = ""
 
-		if (savedInstanceState == null) {
-			fragmentSavedState = HashMap()
-		} else {
-			savedInstanceState.getSerializable("fragmentState") as HashMap<String, Fragment.SavedState?>
-		}
-
-//		homeFragment = HomeFragment()
-//		searchFragment = SearchFragment()
-//		cameraFragment = CameraFragment()
-//		profileFragment = ProfileFragment()
+		homeFragment = HomeFragment()
+		searchFragment = SearchFragment()
+		addFragment = AddFragment()
+		profileFragment = ProfileFragment()
 
 //		currentFragment = homeFragment
-
-//		supportFragmentManager.beginTransaction().apply {
-//			add(R.id.main_fragment, profileFragment, "3").hide(profileFragment)
-//			add(R.id.main_fragment, cameraFragment, "2").hide(cameraFragment)
-//			add(R.id.main_fragment, searchFragment, "1").hide(searchFragment)
-//			add(R.id.main_fragment, homeFragment, "0")
-//			commit() // fazendo o commit de tods os fragmentos de uma vez
-//		}
 
 		binding.mainBottomNav.setOnNavigationItemSelectedListener(this)
 		binding.mainBottomNav.selectedItemId = R.id.menu_bottom_home
@@ -90,85 +74,44 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 		binding.mainAppbar.layoutParams = coordinatorParams
 	}
 
-	// disparado toda vez que trocar e precisar armazenar um novo estado de fragmento
-	override fun onSaveInstanceState(outState: Bundle) {
-		outState.putSerializable("fragmentState", fragmentSavedState)
-		super.onSaveInstanceState(outState)
-	}
-
 	override fun onNavigationItemSelected(item: MenuItem): Boolean {
 		var scrollToolbarEnabled = false
-
-		val newFragment: Fragment? = when(item.itemId) {
+		currentFragment = null
+		when (item.itemId) {
 			R.id.menu_bottom_home -> {
-				HomeFragment()
+				if (currentFragment == homeFragment) return false
+				currentFragment = homeFragment
 			}
 			R.id.menu_bottom_search -> {
-				SearchFragment()
+				if (currentFragment == searchFragment) return false
+				currentFragment = searchFragment
 			}
 			R.id.menu_bottom_add -> {
-				CameraFragment()
-			}
+				if (currentFragment == addFragment) return false
+				currentFragment = addFragment
+				scrollToolbarEnabled = false
+				}
 			R.id.menu_bottom_profile -> {
-				ProfileFragment()
-			}
-
-			else -> null
-		}
-
-		val currFragment = supportFragmentManager.findFragmentById(R.id.main_fragment)
-		val fragmentTag = newFragment?.javaClass?.simpleName
-		if (!currFragment?.tag.equals(fragmentTag)) {
-			currFragment?.let {
-				fragmentSavedState.put(
-					it.tag!!,
-					supportFragmentManager.saveFragmentInstanceState(it)
-				)
+				if (currentFragment == profileFragment) return false
+				currentFragment = profileFragment
+				scrollToolbarEnabled = true
 			}
 		}
-
-		newFragment?.setInitialSavedState(fragmentSavedState[fragmentTag])
-		newFragment?.let {
-			supportFragmentManager.beginTransaction()
-				.replace(R.id.main_fragment, it, fragmentTag)
-				.addToBackStack(fragmentTag)
-				.commit()
-		}
-
-//		when (item.itemId) {
-//			R.id.menu_bottom_home -> {
-//				if (currentFragment == homeFragment) return false
-//				supportFragmentManager.beginTransaction().hide(currentFragment).show(homeFragment).commit()
-//				currentFragment = homeFragment
-//
-//			}
-//			R.id.menu_bottom_search -> {
-//				if (currentFragment == searchFragment) return false
-//				supportFragmentManager.beginTransaction().hide(currentFragment).show(searchFragment).commit()
-//
-//				currentFragment = searchFragment
-//			}
-//			R.id.menu_bottom_add -> {
-//				if (currentFragment == cameraFragment) return false
-//				supportFragmentManager.beginTransaction().hide(currentFragment).show(cameraFragment).commit()
-//
-//				currentFragment = cameraFragment
-//				}
-//			R.id.menu_bottom_profile -> {
-//				if (currentFragment == profileFragment) return false
-//				supportFragmentManager.beginTransaction().hide(currentFragment).show(profileFragment).commit()
-//
-//				currentFragment = profileFragment
-//				scrollToolbarEnabled = true
-//			}
-//		}
 
 		setScrollToolbarEnabled(scrollToolbarEnabled)
 
-//		currentFragment?.let {
-//			replaceFragment(R.id.main_fragment, it)
-//		}
+		currentFragment?.let {
+			replaceFragment(R.id.main_fragment, it)
+		}
 
 		return true
+	}
+
+	override fun onPostCreated() {
+		homeFragment.presenter.clear()
+		if (supportFragmentManager.findFragmentByTag(profileFragment.javaClass.simpleName) != null) {
+			profileFragment.presenter.clear()
+		}
+		binding?.mainBottomNav?.selectedItemId = R.id.menu_bottom_home
 	}
 }

@@ -45,4 +45,5 @@
     <string name="invalid_password">Senha deve ter ao menos 8 caracteres</string>
     <string name="invalid_name">Nome deve ter ao menos 3 caracteres</string>
     <string name="empty_list">Nenhum registro encontrado</string>
+    <string name="permission_camera_denied">Permissao nao concedida</string>
 </resources>

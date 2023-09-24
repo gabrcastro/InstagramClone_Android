@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
+    <androidx.camera.view.PreviewView
         android:id="@+id/camera_img"
         android:background="@color/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -14,11 +14,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp" />
     
-    <de.hdodenhof.circleimageview.CircleImageView
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="96dp"
         android:id="@+id/camera_img_picture"
         android:layout_marginBottom="?attr/actionBarSize"
-        android:src="@drawable/ic_insta_profile_thin"
+        android:background="@drawable/button_background_circle"
         app:civ_circle_background_color="@color/gray_border"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
