@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "742841313073",
+    "project_id": "instakotlinclone-30c6a",
+    "storage_bucket": "instakotlinclone-30c6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742841313073:android:a04378c64f32fc73f6b210",
+        "android_client_info": {
+          "package_name": "co.gabrielcastro.instagramclone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHY9bonE-6slAXp1fWx98NAi-Yog3jU3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,6 +5,8 @@ import co.gabrielcastro.instagramclone.common.base.RequestCallback
 import co.gabrielcastro.instagramclone.common.model.Database
 import co.gabrielcastro.instagramclone.common.model.Post
 import co.gabrielcastro.instagramclone.common.model.UserAuth
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import java.lang.RuntimeException
 
 class HomeLocalDataSource(
@@ -22,8 +24,8 @@ class HomeLocalDataSource(
     callback.onComplete()
   }
 
-  override fun fetchSession(): UserAuth {
-    return Database.sessionAuth ?: throw RuntimeException("usuario nao logado")
+  override fun fetchSession(): String {
+    return FirebaseAuth.getInstance().uid ?: throw RuntimeException("usuario nao logado")
   }
 
   override fun putFeed(response: List<Post>?) {

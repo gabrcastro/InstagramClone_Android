@@ -9,6 +9,7 @@ interface Home {
 	interface Presenter: BasePresenter {
 		fun fetchFeed()
 		fun clear()
+		fun logout()
 	}
 	interface View: BaseView<Presenter> {
 		fun showProgress(enabled: Boolean)

@@ -1,7 +1,9 @@
 package co.gabrielcastro.instagramclone.home.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -15,6 +17,7 @@ import co.gabrielcastro.instagramclone.common.model.Post
 import co.gabrielcastro.instagramclone.databinding.FragmentHomeBinding
 import co.gabrielcastro.instagramclone.home.Home
 import co.gabrielcastro.instagramclone.home.presenter.HomePresenter
+import co.gabrielcastro.instagramclone.main.LogoutListener
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, Home.Presenter>(
 	R.layout.fragment_home,
@@ -23,6 +26,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, Home.Presenter>(
 
 	override lateinit var presenter: Home.Presenter
 	private val adapter = FeedAdapter()
+	private var logoutListener: LogoutListener? = null
+
+	override fun onAttach(context: Context) {
+		super.onAttach(context)
+		if (context is LogoutListener) {
+			logoutListener = context
+		}
+	}
+
 	override fun setupPresenter() {
 		presenter = HomePresenter(this, DependencyInjector.homeRepository())
 	}
@@ -56,5 +68,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, Home.Presenter>(
 		adapter.notifyDataSetChanged()
 	}
 
+	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+		when (item.itemId) {
+			R.id.menu_logout -> {
+				logoutListener?.logout()
+				return true
+			}
+		}
+		return super.onOptionsItemSelected(item)
+	}
 
 }

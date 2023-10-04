@@ -5,7 +5,7 @@
     <string name="enter">Entrar</string>
     <string name="or">ou</string>
     <string name="does_not_have_account">Não tem uma conta? <b>Cadastre-se.</b></string>
-    <string name="already_has_account">Já tem uma conta? <b><font color="#000000">Faça login.</font></b></string>
+    <string name="already_has_account">Já tem uma conta? <b>Faça login</b></string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="action_settings">Settings</string>
     <string name="next">Avançar</string>

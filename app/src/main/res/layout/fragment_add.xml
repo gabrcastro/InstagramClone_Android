@@ -13,10 +13,10 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/add_tablelayout"
-            android:background="@color/white"
+            android:background="?colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:tabIndicatorColor="@color/black"
-            app:tabSelectedTextColor="@color/black"
+            app:tabIndicatorColor="?colorOnPrimary"
+            app:tabSelectedTextColor="?colorOnPrimary"
             app:tabTextColor="@color/gray_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

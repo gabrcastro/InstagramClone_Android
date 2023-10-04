@@ -1,6 +1,5 @@
 package co.gabrielcastro.instagramclone.profile.view
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import co.gabrielcastro.instagramclone.R
 import co.gabrielcastro.instagramclone.common.model.Post
+import com.bumptech.glide.Glide
 
 class PostAdapter() : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
@@ -27,12 +27,13 @@ class PostAdapter() : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
 	override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
 		// devolver posicao
-		holder.bind(items[position].uri)
+		holder.bind(items[position].url)
 	}
 
 	class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		fun bind(image: Uri) {
-			itemView.findViewById<ImageView>(R.id.item_profile_img_grid).setImageURI(image)
+		fun bind(url: String?) {
+			Glide.with(itemView.context).load(url).into(itemView.findViewById(R.id.item_profile_img_grid))
+			//itemView.findViewById<ImageView>(R.id.item_profile_img_grid).setImageURI(url)
 		}
 	}
 

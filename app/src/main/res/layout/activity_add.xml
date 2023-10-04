@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="?colorPrimary">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/add_toolbar"
@@ -26,23 +26,25 @@
         app:layout_constraintTop_toBottomOf="@id/add_appbarlayout"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
+        android:background="?colorPrimary"
         android:layout_height="0dp"
         android:padding="16dp"
-        android:orientation="horizontal" >
+        android:gravity="center|top"
+        android:orientation="vertical" >
 
         <ImageView
             android:id="@+id/add_img_caption"
             android:scaleType="centerCrop"
             android:src="@drawable/button_background_circle"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
             tools:ignore="NotSibling" />
 
         <EditText
             android:id="@+id/add_edit_caption"
             style="@style/Theme.InstagramClone.FormEditText"
-            android:layout_marginStart="16dp"
-            android:layout_width="300dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="NotSibling" />
 

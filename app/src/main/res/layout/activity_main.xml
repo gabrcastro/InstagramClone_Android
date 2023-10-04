@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".main.view.MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -15,7 +14,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/main_appbar"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="?colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -27,6 +26,7 @@
                 app:layout_scrollFlags="scroll|enterAlways" >
                 
                 <ImageView
+                    android:id="@+id/main_img_logo"
                     android:src="@drawable/instagram_logo_black"
                     android:layout_marginTop="8dp"
                     android:padding="8dp"
@@ -39,6 +39,7 @@
         <FrameLayout
             android:id="@+id/main_fragment"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="?colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -50,9 +51,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/menu_bottom_nav"
-        app:itemIconTint="@color/black"
+        android:backgroundTint="?colorPrimary"
+        app:itemIconTint="?colorOnPrimary"
         app:itemTextColor="@color/blue_enabled"
-        android:background="@color/white"
         app:itemActiveIndicatorStyle="@color/gray_darker"
         app:labelVisibilityMode="unlabeled"
         android:layout_width="match_parent"

@@ -5,16 +5,24 @@ import android.os.Looper
 import co.gabrielcastro.instagramclone.common.base.RequestCallback
 import co.gabrielcastro.instagramclone.common.model.Database
 import co.gabrielcastro.instagramclone.common.model.Post
-import co.gabrielcastro.instagramclone.common.model.UserAuth
+import co.gabrielcastro.instagramclone.common.model.User
 
 class ProfileFakeRemoteDataSource : ProfileDataSource {
 
-	override fun fetchUserProfile(userUUID: String, callback: RequestCallback<UserAuth>) {
+	override fun fetchUserProfile(userUUID: String, callback: RequestCallback<Pair<User, Boolean?>>) {
 		Handler(Looper.getMainLooper()).postDelayed({
 			val userAuth = Database.usersAuth.firstOrNull { userUUID == it.uuid }
 
 			if (userAuth != null) {
-				callback.onSuccess(userAuth)
+				if (userAuth == Database.sessionAuth) {
+					// TODO: remove later - callback.onSuccess(Pair(userAuth, null))
+				} else {
+					val followeing = Database.followers[Database.sessionAuth!!.uuid]
+
+					val destUser = followeing?.firstOrNull() { it == userUUID }
+
+					// TODO: remove later - callback.onSuccess(Pair(userAuth, destUser != null))
+				}
 			} else {
 				callback.onFailure("Usuario nao encontrado")
 			}
@@ -31,5 +39,22 @@ class ProfileFakeRemoteDataSource : ProfileDataSource {
 
 			callback.onComplete()
 		}, 2000)
+	}
+
+	override fun followUser(uuid: String, follow: Boolean, callback: RequestCallback<Boolean>) {
+		Handler(Looper.getMainLooper()).postDelayed({
+			var followers = Database.followers[Database.sessionAuth!!.uuid]
+
+			if (followers == null) {
+				followers = mutableSetOf()
+				Database.followers[Database.sessionAuth!!.uuid] = followers
+			}
+
+			if (follow) {
+				Database.followers[Database.sessionAuth!!.uuid]!!.add(uuid)
+			} else {
+				Database.followers[Database.sessionAuth!!.uuid]!!.remove(uuid)
+			}
+ 		}, 500)
 	}
 }

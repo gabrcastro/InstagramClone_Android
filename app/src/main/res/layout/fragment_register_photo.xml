@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?colorPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,13 +34,13 @@
             <TextView
                 android:text="@string/photo_register_title"
                 android:textSize="24sp"
-                android:textColor="@color/black"
+                android:textColor="?colorOnPrimary"
                 android:layout_gravity="center_horizontal"
                 style="@style/Theme.InstagramClone.TextViewBase.Form" />
 
             <TextView
                 android:text="@string/photo_register_subtitle"
-                android:textColor="@color/black"
+                android:textColor="?colorOnPrimary"
                 android:layout_gravity="center_horizontal"
                 style="@style/Theme.InstagramClone.TextViewBase.Form" />
 

@@ -10,6 +10,6 @@ interface AddDataSource {
     throw UnsupportedOperationException()
   }
 
-  fun fetchSession() : UserAuth { throw UnsupportedOperationException() }
+  fun fetchSession() : String { throw UnsupportedOperationException() }
 
 }

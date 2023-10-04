@@ -32,7 +32,7 @@ class LoginPresenter(
             view?.showProgress(true)
 
             repository.login(email, password, object : LoginCallback {
-                override fun onSuccess(userAuth: UserAuth) {
+                override fun onSuccess() {
                     view?.onUserAuthenticated()
                 }
 

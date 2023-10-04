@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import co.gabrielcastro.instagramclone.R
 import co.gabrielcastro.instagramclone.common.model.Post
+import com.bumptech.glide.Glide
 
 class FeedAdapter() : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
 
@@ -32,10 +33,13 @@ class FeedAdapter() : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
 
   class FeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(post: Post) {
-      itemView.findViewById<ImageView>(R.id.home_img_post).setImageURI(post.uri)
+
+      Glide.with(itemView.context).load(post.url).into(itemView.findViewById(R.id.home_img_post))
+      //itemView.findViewById<ImageView>(R.id.home_img_post).setImageURI(post.uri)
+      Glide.with(itemView.context).load(post.publisher?.photoUrl).into(itemView.findViewById(R.id.home_img_user))
+      //itemView.findViewById<ImageView>(R.id.home_img_user).setImageURI(post.publisher.photoUri)
       itemView.findViewById<TextView>(R.id.home_txt_caption).text = post.caption
-      itemView.findViewById<ImageView>(R.id.home_img_user).setImageURI(post.publisher.photoUri)
-      itemView.findViewById<TextView>(R.id.home_text_username).text = post.publisher.name
+      itemView.findViewById<TextView>(R.id.home_text_username).text = post.publisher?.name
 
     }
   }

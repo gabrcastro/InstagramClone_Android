@@ -23,7 +23,7 @@ class AddFakeRemoveDataSource : AddDataSource {
         Database.posts[userUUID] = posts
       }
 
-      val post = Post(UUID.randomUUID().toString(), uri, caption, System.currentTimeMillis(), Database.sessionAuth!!)
+      val post = Post(UUID.randomUUID().toString(), null, caption, System.currentTimeMillis(), null)
       posts.add(post)
 
       var followers = Database.followers[userUUID]

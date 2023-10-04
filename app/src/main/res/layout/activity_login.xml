@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?colorPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                 <TextView
                     style="@style/Theme.InstagramClone.TextViewBase"
                     android:layout_gravity="center"
-                    android:background="@color/white"
+                    android:background="?colorPrimary"
                     android:padding="8dp"
                     android:text="@string/or" />
 
@@ -95,7 +95,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray_darker"
+        android:background="?colorPrimaryVariant"
         app:layout_constraintBottom_toTopOf="@id/login_textview_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -106,10 +106,10 @@
         android:layout_width="match_parent"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="@color/white"
+        android:background="?colorPrimary"
         android:padding="24dp"
         android:text="@string/does_not_have_account"
-        android:textColor="@color/black"
+        android:textColor="?colorOnPrimary"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
