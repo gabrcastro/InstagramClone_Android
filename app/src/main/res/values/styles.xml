@@ -39,7 +39,7 @@
     <style name="Theme.InstagramClone.TextViewBase" parent="Theme.InstagramClone.FormContainer">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">?colorPrimaryVariant</item>
+        <item name="android:textColor">?colorOnPrimary</item>
         <item name="android:textSize">16sp</item>
     </style>
 
